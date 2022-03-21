@@ -1,0 +1,15 @@
+name: "Ecolytiq Helm Chart Releaser"
+description: "Release Helm charts on private GitHub Pages"
+author: "Ecolytiq"
+
+inputs:
+  charts_dir:
+    description: The charts directory
+    default: charts
+runs:
+  using: composite
+  steps:
+    - run: |
+        charts_dir="${{ inputs.charts_dir }}"
+        "$GITHUB_ACTION_PATH/hcr.sh" "${charts_dir}"
+      shell: bash
